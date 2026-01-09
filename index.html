@@ -1,0 +1,545 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Perit ❤️ Sudenaz</title>
+    <!-- Romantik fontlar -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #ff69b4;
+            --soft-pink: #ffd1e8;
+            --deep-pink: #e83e8c;
+            --bg: #fff6fb;
+            --text: #40223b;
+            --accent: #ff9ec7;
+            --gold: #d4a373;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: 'Quicksand',system-ui,-apple-system,Roboto,Arial,sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            /* Arka plan: Ben 10 görselini dosya olarak ekleyebilirsin (ben10_bg.jpg) */
+            background-image: url('ben10_bg.jpg'), radial-gradient(24px 24px at 24px 24px, #ffeff7 20%, transparent 21%), radial-gradient(18px 18px at 45px 35px, #ffe3f1 20%, transparent 21%);
+            background-size: cover, 60px 60px, 60px 60px;
+            background-position: center, 0 0, 0 0;
+            background-attachment: fixed;
+        }
+
+        /* Üst başlık ve nav */
+        header {
+            text-align: center;
+            padding: 38px 20px 22px;
+            background: linear-gradient(135deg, var(--soft-pink), #ffe6f2);
+            border-bottom: 3px dashed var(--accent);
+        }
+
+        .title {
+            font-family: 'Pacifico',cursive;
+            font-size: 2.6rem;
+            color: var(--deep-pink);
+            margin: 0 0 6px
+        }
+
+        .subtitle {
+            margin: 0;
+            opacity: .9
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            background: #fff;
+            border-bottom: 1px solid #f1cadd;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+            .nav a {
+                text-decoration: none;
+                color: var(--deep-pink);
+                background: var(--soft-pink);
+                padding: 8px 12px;
+                border-radius: 10px;
+                border: 1px solid var(--accent);
+                font-weight: 700;
+            }
+
+                .nav a:hover {
+                    background: var(--pink);
+                    color: #fff
+                }
+
+        /* Bölümler */
+        section {
+            padding: 26px 16px;
+            max-width: 1100px;
+            margin: 0 auto
+        }
+
+        h2 {
+            color: var(--deep-pink);
+            margin: 0 0 12px;
+            font-size: 1.7rem
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #f1cadd;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(232,62,140,.08);
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffeaf4, #fff6fb);
+        }
+
+            .hero .row {
+                display: grid;
+                grid-template-columns: 1.1fr .9fr;
+                gap: 16px;
+            }
+
+        .count {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid var(--accent);
+            color: var(--deep-pink);
+            font-weight: 700;
+        }
+
+        /* Alıntı */
+        blockquote {
+            margin: 0;
+            padding: 16px 18px;
+            background: linear-gradient(180deg,#fff,#fff9fc);
+            border-left: 6px solid var(--accent);
+            border-radius: 12px;
+            font-style: italic;
+        }
+
+        /* Galeri */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+
+            .gallery figure {
+                margin: 0;
+                background: #fff;
+                border-radius: 12px;
+                border: 2px solid var(--soft-pink);
+                overflow: hidden;
+                box-shadow: 0 6px 14px rgba(232,62,140,.12);
+                transition: transform .2s ease, box-shadow .2s ease;
+            }
+
+                .gallery figure:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 10px 20px rgba(232,62,140,.18)
+                }
+
+            .gallery img {
+                width: 100%;
+                height: 280px;
+                object-fit: cover;
+                display: block
+            }
+
+            .gallery figcaption {
+                padding: 10px;
+                font-size: .95rem;
+                color: var(--deep-pink);
+                text-align: center
+            }
+
+        /* Oyun */
+        .status {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 6px 0 10px
+        }
+
+        .btn {
+            background: var(--deep-pink);
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+            .btn.secondary {
+                background: #fff;
+                color: var(--deep-pink);
+                border: 1px solid var(--accent)
+            }
+
+        .game-area {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 4px
+        }
+
+        .tile {
+            height: 80px;
+            border-radius: 12px;
+            border: 2px solid var(--accent);
+            background: linear-gradient(135deg, #ffe3f1, #ffd1e8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            user-select: none;
+            transition: transform .08s ease;
+        }
+
+            .tile:active {
+                transform: scale(.98)
+            }
+
+            .tile.matched {
+                background: #fff;
+                border-color: #c0ffc8;
+                box-shadow: 0 0 0 3px #c0ffc8 inset;
+                color: #2b8a3e;
+            }
+
+        .win {
+            display: none;
+            margin-top: 8px;
+            padding: 12px;
+            background: #fff0f7;
+            border: 2px dashed var(--accent);
+            border-radius: 12px;
+            color: var(--deep-pink);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .meter {
+            font-weight: 700;
+            color: var(--deep-pink)
+        }
+
+        /* Ziyaretçi defteri */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #f1cadd;
+            font-family: inherit
+        }
+
+        .notes {
+            list-style: none;
+            padding-left: 0;
+            margin: 0
+        }
+
+        .note {
+            background: #fff7fb;
+            border: 1px solid #ffd1e8;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px
+        }
+
+        /* Footer ve stickerlar */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #a04b86
+        }
+
+        .sticker {
+            position: fixed;
+            z-index: 2;
+            opacity: .16;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,.08))
+        }
+
+            .sticker.cat1 {
+                top: 10px;
+                right: 12px;
+                font-size: 48px
+            }
+
+            .sticker.cat2 {
+                bottom: 14px;
+                left: 16px;
+                font-size: 52px
+            }
+
+            .sticker.heart {
+                top: 80px;
+                left: 10px;
+                font-size: 40px
+            }
+    </style>
+</head>
+<body>
+
+    <!-- Tatlı köşe çıkartmaları -->
+    <div class="sticker cat1">🐱</div>
+    <div class="sticker heart">💗</div>
+    <div class="sticker cat2">🐈</div>
+
+    <header>
+        <h1 class="title">Perit ❤️ Sudenaz</h1>
+        <p class="subtitle">20 Mayıs 2025’te başlayan hikayemiz</p>
+    </header>
+
+    <nav class="nav">
+        <a href="#hosgeldin">Hoş geldin</a>
+        <a href="#galeri">Galeri</a>
+        <a href="#muzik">Şarkılarımız</a>
+        <a href="#oyun">Şirin Oyun</a>
+        <a href="#mesaj">Kalpten Mesaj</a>
+        <a href="#ziyaretci">Ziyaretçi Notu</a>
+    </nav>
+
+    <!-- Hoş geldin ve sayaç -->
+    <section id="hosgeldin">
+        <div class="card hero">
+            <div class="row">
+                <div>
+                    <h2>Seni karşılayan pembe bir dünya</h2>
+                    <p>Bu site, senin gülüşünle başlayan her anı daha özel kılmak için. Kediler, kalpler ve tatlı ayrıntılarla dolu.</p>
+                    <p id="counter" class="count">Gün, saat ve dakika hesaplanıyor…</p>
+                    <p class="meter">Özel günler: 20 Mayıs 2025 (Tanışma) • 20 Nisan 2006 (Sudenaz) • 1 Şubat 2006 (Perit)</p>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--deep-pink); margin-top:0">Samimi sözler</h3>
+                    <ul style="margin:0; padding-left:18px">
+                        <li>Kalbimin ritmi, adını fısıldadığında değişiyor.</li>
+                        <li>Yanımda olduğunda dünyanın sesi kısılıyor, sadece biz kalıyoruz.</li>
+                        <li>Her sabahın sebebi, her gecenin duası sensin.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Şarkılar: iki Spotify parçası -->
+    <section id="muzik">
+        <h2>Şarkılarımız</h2>
+        <div class="card">
+            <p>Bu şarkılar çalarken, aklımda tek bir şey var: Sen.</p>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5MAv1RGwsagnfxgzB1nYqz?utm_source=generator"
+                    width="100%" height="152" frameborder="0"
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+            <br><br>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4w63uwp5cpK3vwBNgx1QBk?utm_source=generator"
+                    width="100%" height="152" frameborder="0"
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+    </section>
+
+    <!-- Şirin oyun -->
+    <section id="oyun">
+        <h2>Şirin eşleştirme oyunu</h2>
+        <div class="card">
+            <p>Kalpleri eşleştir! Tüm çiftleri bulduğunda sürpriz mesaj görünecek.</p>
+            <div class="status">
+                <button class="btn" id="startBtn">Oyunu başlat</button>
+                <button class="btn secondary" id="resetBtn">Sıfırla</button>
+                <span id="moves">Hamle: 0</span>
+            </div>
+            <div class="game-area" id="board"></div>
+            <div class="win" id="winBox">Seni seviyorum Sudenaz &lt;3</div>
+        </div>
+    </section>
+
+    <!-- Kalpten tek mesaj (yalnızca bir kere) -->
+    <section id="mesaj">
+        <h2>Kalpten mesaj</h2>
+        <div class="card">
+            <blockquote>
+                Seni tanıdığım andan itibaren bu hayatta yapmak istediğim şeyi buldum.
+                Tüm hayatım boyunca seni sevmek istiyorum.
+                İyi ki benim sevgilimsin &lt;3
+            </blockquote>
+            <p>İçimdeki her iyi şeye senin adın yazılı. İyi ki varsın, iyi ki yanımdasın.</p>
+        </div>
+    </section>
+
+    <!-- Ziyaretçi notları -->
+    <section id="ziyaretci">
+        <h2>Ziyaretçi notu</h2>
+        <div class="card">
+            <form id="guestForm" class="form-row">
+                <div>
+                    <label for="name"><strong>İsim</strong></label>
+                    <input id="name" name="name" type="text" placeholder="İsmin" />
+                </div>
+                <div>
+                    <label for="msg"><strong>Mesaj</strong></label>
+                    <textarea id="msg" name="msg" rows="4" placeholder="Sudenaz için bir not..."></textarea>
+                </div>
+                <div>
+                    <button class="btn" type="submit">Gönder</button>
+                    <button class="btn secondary" type="button" id="clearBtn">Temizle</button>
+                </div>
+            </form>
+        </div>
+        <div class="card">
+            <h3 style="margin-top:0">Yazılan notlar</h3>
+            <ul id="notes" class="notes"></ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>Made with 💖 by Perit • Tema: pembe, kediler ve kalpler • Ben 10 ruhu arkaplanda</p>
+    </footer>
+
+    <script>// Sayaç: 20 Mayıs 2025'ten beri geçen gün, saat, dakika (canlı)
+    const startDate = new Date("2025-05-20T00:00:00");
+    function updateCounter(){
+      const now = new Date();
+      const diff = now - startDate;
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor((diff / (1000*60*60)) % 24);
+      const minutes = Math.floor((diff / (1000*60)) % 60);
+      document.getElementById("counter").textContent =
+        "Tanışalı " + days + " gün, " + hours + " saat, " + minutes + " dakika geçti 💖";
+    }
+    updateCounter();
+    setInterval(updateCounter, 30*1000); // Her 30 sn'de bir güncelle
+
+    // Şirin memory-match kalp oyunu
+    const tileset = ["💗","💗","🐱","🐱","💖","💖","🌸","🌸","💕","💕","✨","✨","🫶","🫶","🎀","🎀"];
+    const board = document.getElementById('board');
+    const startBtn = document.getElementById('startBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const movesEl = document.getElementById('moves');
+    const winBox = document.getElementById('winBox');
+    let first = null, lock = false, moves = 0, matched = 0, data = [];
+
+    function shuffle(arr){
+      for(let i=arr.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function draw(){
+      board.innerHTML = '';
+      data = shuffle([...tileset]);
+      data.forEach((emoji, idx)=>{
+        const d = document.createElement('div');
+        d.className = 'tile';
+        d.dataset.emoji = emoji;
+        d.dataset.index = idx;
+        d.textContent = '❣️';
+        d.addEventListener('click', ()=>onFlip(d));
+        board.appendChild(d);
+      });
+      moves = 0; matched = 0; updateMoves(); winBox.style.display = 'none';
+      first = null; lock = false;
+    }
+
+    function updateMoves(){ movesEl.textContent = 'Hamle: ' + moves }
+
+    function onFlip(tile){
+      if(lock || tile.classList.contains('matched')) return;
+      if(tile.textContent === tile.dataset.emoji) return; // açıksa dokunma
+      tile.textContent = tile.dataset.emoji;
+
+      if(!first){
+        first = tile;
+      }else{
+        moves++; updateMoves();
+        if(first.dataset.emoji === tile.dataset.emoji){
+          first.classList.add('matched');
+          tile.classList.add('matched');
+          first = null;
+          matched += 2;
+          if(matched === tileset.length){
+            setTimeout(()=>{ winBox.style.display = 'block'; }, 250);
+          }
+        }else{
+          lock = true;
+          setTimeout(()=>{
+            first.textContent = '❣️';
+            tile.textContent = '❣️';
+            first = null; lock = false;
+          }, 650);
+        }
+      }
+    }
+
+    startBtn.addEventListener('click', draw);
+    resetBtn.addEventListener('click', draw);
+    // Otomatik başlat
+    draw();
+
+    // Ziyaretçi defteri (localStorage)
+    const form = document.getElementById('guestForm');
+    const notesList = document.getElementById('notes');
+    const clearBtn = document.getElementById('clearBtn');
+    const saved = JSON.parse(localStorage.getItem('guestbook') || '[]');
+    saved.forEach(addNote);
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim() || 'Anonim';
+      const msg = document.getElementById('msg').value.trim();
+      if(!msg) return;
+      const note = {name, msg, ts: new Date().toLocaleString()};
+      saved.push(note);
+      localStorage.setItem('guestbook', JSON.stringify(saved));
+      addNote(note);
+      form.reset();
+    });
+
+    clearBtn.addEventListener('click', ()=>{
+      if(confirm('Tüm notlar silinsin mi?')){
+        localStorage.removeItem('guestbook');
+        notesList.innerHTML = '';
+      }
+    });
+
+    function addNote({name, msg, ts}){
+      const li = document.createElement('li');
+      li.className = 'note';
+      li.innerHTML = `<p><strong>${name}</strong> <span style="opacity:.7">(${ts})</span></p><p>${msg}</p>`;
+      notesList.prepend(li);
+    }</script>
+</body>
+</html>
